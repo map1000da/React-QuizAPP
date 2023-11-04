@@ -55,8 +55,8 @@ export const AnswerPage: React.FC = () => {
     return () => unsubscribe();
   }, [roomId]);
 
-  const bg = useColorModeValue("gray.100", "gray.900");
-  const textColor = useColorModeValue("gray.900", "gray100");
+  const bg = useColorModeValue("gray.50", "gray.900");
+  const textColor = useColorModeValue("gray.900", "gray50");
 
   return (
     <Flex align="center" justify="center" height="100vh" bg={bg}>

@@ -92,7 +92,7 @@ export const RoomSelection: React.FC = () => {
           </VStack>
         </Box>
 
-        <Button onClick={onOpen} mb={6}>
+        <Button colorScheme="blue" onClick={onOpen} mb={6}>
           Create Room
         </Button>
         <CreateRoomModal isOpen={isOpen} onClose={onClose} />

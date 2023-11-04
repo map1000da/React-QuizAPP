@@ -44,7 +44,10 @@ export const RoleSelection: React.FC = () => {
         answerIds: arrayUnion(userId),
       });
       navigate(`/answer-page/${roomId}`);
-    } else if (role === "questioner" && !roomData.questionerId) {
+    } else if (
+      role === "questioner" &&
+      (!roomData.questionerId || roomData.questionerId === userId)
+    ) {
       await setDoc(
         doc(db, "uses", userId),
         {
@@ -61,7 +64,7 @@ export const RoleSelection: React.FC = () => {
     }
   };
   return (
-    <Flex align="center" justify="center" height="100vh" bg="gray.100">
+    <Flex align="center" justify="center" height="100vh" bg="gray.50">
       <Box p={8} borderRadius={8} bg="white" boxShadow="lg">
         <VStack spacing={8}>
           <Heading h="h2">Select Your Role</Heading>
