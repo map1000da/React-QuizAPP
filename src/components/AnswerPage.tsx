@@ -25,6 +25,7 @@ import { AnswerCheck } from "./AnswerCheck";
 export const AnswerPage: React.FC = () => {
   const { roomId } = useParams<{ roomId: string }>();
   const [quiz, setQuiz] = useState<Quiz | null>(null);
+  const [isLoading, setIsLoading] = useState(true); //データが読み込まれているかどうかを判断する
 
   useEffect(() => {
     if (!roomId) return;
@@ -48,6 +49,7 @@ export const AnswerPage: React.FC = () => {
         } as Quiz;
         setQuiz(quizData);
       }
+      setIsLoading(false); // データの読み込みの完了
     });
 
     return () => unsubscribe();
@@ -70,7 +72,13 @@ export const AnswerPage: React.FC = () => {
           <Heading size="xl" color={textColor}>
             Answer Page
           </Heading>
-          {quiz ? (
+          {isLoading ? (
+            //データの読み込み流
+            <Flex>
+              <Spinner />
+              <Text>データを読み込んでいます．．．．</Text>
+            </Flex>
+          ) : quiz ? (
             <>
               <Heading size="md" color={textColor}>
                 Question: {quiz.data.question}
