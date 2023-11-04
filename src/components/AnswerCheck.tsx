@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Box, VStack, Text, Input, Button } from "@chakra-ui/react";
 
 interface Props {
   correctAnswer: string;
@@ -18,16 +19,20 @@ export const AnswerCheck: React.FC<Props> = (props) => {
   };
 
   return (
-    <div>
-      <input
-        type="text"
-        value={userAnswer}
-        onChange={(e) => setUserAnswer(e.target.value)}
-        placeholder="回答を入力してください"
-      />
-      <button onClick={handleSubmit}>回答を提出する</button>
+    <Box>
+      <VStack spacing={4} w="100%">
+        <Input
+          type="text"
+          value={userAnswer}
+          onChange={(e) => setUserAnswer(e.target.value)}
+          placeholder="回答を入力してください"
+        />
+        <Button colorScheme="teal" onClick={handleSubmit}>
+          回答提出
+        </Button>
 
-      {isCorrect !== null && <div>{isCorrect ? "正解" : "不正解"}</div>}
-    </div>
+        {isCorrect !== null && <div>{isCorrect ? "正解" : "不正解"}</div>}
+      </VStack>
+    </Box>
   );
 };
