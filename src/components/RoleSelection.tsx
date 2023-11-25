@@ -22,6 +22,7 @@ export const RoleSelection: React.FC = () => {
     }
 
     const userId = auth.currentUser?.uid;
+    const userName = auth.currentUser?.displayName;
     const roomRef = doc(db, "rooms", roomId);
     const roomSnap = await getDoc(roomRef);
 
@@ -37,6 +38,7 @@ export const RoleSelection: React.FC = () => {
         doc(db, "users", userId),
         {
           roomId: roomId,
+          userName: userName,
         },
         { merge: true }
       );
@@ -52,6 +54,7 @@ export const RoleSelection: React.FC = () => {
         doc(db, "uses", userId),
         {
           roomId: roomId,
+          userName: userName,
         },
         { merge: true }
       );
